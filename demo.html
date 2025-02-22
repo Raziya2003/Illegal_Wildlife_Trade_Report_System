@@ -1,0 +1,137 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard with Sidebar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .dashboard {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 25%;
+      max-width: 300px;
+      min-width: 200px;
+      background-color: #343a40;
+      color: #fff;
+      position: fixed;
+      top: 50px;
+      left: 0;
+      height: 100%;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .sidebar.active {
+      left: -15%;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #495057;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #495057;
+    }
+
+    .content {
+      flex-grow: 1;
+      margin-left: 25%;
+      padding: 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .content.shifted {
+      margin-left: 0;
+    }
+
+    .burger-menu {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 20;
+      border-radius: 5px;
+    }
+
+    .dashboard-options {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-options a {
+      text-decoration: none;
+      color: #007bff;
+      padding: 15px 20px;
+      border: 1px solid #007bff;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-options a:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <button class="burger-menu" onclick="toggleSidebar()">☰</button>
+  
+  <div class="dashboard"> 
+     <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="#">Caller Profile</a></li>
+        <li><a href="#">Register Complaint</a></li>
+        <li><a href="#">We Complaint</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+      </ul>
+    </div> 
+
+    <!-- Main Content -->
+     <div class="content" id="content">
+      <h1>Dashboard</h1>
+      <div class="dashboard-options">
+        <a href="#">Caller Profile</a>
+        <a href="#">Register Complaint</a>
+        <a href="#">We Complaint</a>
+        <a href="#">Photo Gallery</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      sidebar.classList.toggle('active');
+      content.classList.toggle('shifted');
+    }
+  </script>
+</body>
+</html>

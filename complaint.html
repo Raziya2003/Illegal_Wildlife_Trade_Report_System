@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+        <link href="style.css?v=1.0" rel="stylesheet">
+        <script>
+            async function submitForm(event){
+                event.preventDefault();
+                const Species = document.getElementById('Species').value;
+                const Location = document.getElementById('Location').value;
+                const Date = document.getElementById('Date').value;
+                const Time = document.getElementById('Time').value;
+                const Urgency = document.getElementById('Urgency').value;
+                const Details = document.getElementById('Details').value;
+                try{
+                    const response = await fetch('http://localhost/3050/wildlife', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type':'application/json'
+                        },
+                        body: JSON.stringify({
+                            Species: Species,
+                            Location: Location,
+                            Date: Date,
+                            Time: Time,
+                            Urgency: Urgency,
+                            Details: Details
+                        })
+                    });
+                //         if (response.ok) {
+                //             alert('Complaint Registered Successfully!');
+                //             document.querySelector('form').reset(); // Reset form after submission
+                //         } else {
+                //             alert('Failed to submit the form. Please try again.');
+                // }
+
+                }catch(error)
+                {
+                    console.error('Error:',error)
+                    alert('failed to submit a form');
+                }
+            }
+            function subFun(event)
+            {
+                submitForm(event);
+
+            }
+
+        </script>
+    </head>
+    
+    <body>
+      <nav class="navbar">
+        <h2 id="logo">WildLife Trade </h2>
+        <a href="index.html"><i class="fa fa-house"></i> Home</a>
+        <a href="about.html"><i class="fa fa-info-circle"> </i> About Us</a>
+        <a href="profile.html"><i class="fa fa-gauge"></i> DashBoard</a>
+        <a href="contactUs.html"><i class="fa fa-address-book"> </i> contact Us</a>
+      </nav>
+
+   <!-- *******************************profile content******************** -->
+
+   <div class="dashboardImage"> 
+    <img src="img/green_leaf.jpeg" alt="">
+
+     <div id="dashboard">
+        <aside class="sidebar" id="sidebar">
+            <div class="dashboard-Heading">
+                <h2>dashboard</h2>
+                <button type="button" id="burger" onclick="toggleburger()">☰</button>
+            </div>
+            <div class="profilePic">
+                <img src="img/personIcon.png" alt="">
+            </div>
+            <div class="dashboardList">
+                    <a href="dashboard.html">User Profie</a>
+                    <a href="complaint.html">Register Complaint</a>
+                    <a href="VeiwComplaint.html">View Complaint</a>
+                    <a href="">Endangered Species Awareness</a>
+            </div>
+        </aside> 
+    </div>
+
+   <!-- ********************complain main**************************** -->
+ 
+<div>    
+    <form action="" enctype="multipart/form-data">
+        <div class="formMain">
+            <div class="formHead">
+                <h2>Register a Complaint</h2>
+            </div>
+            <div class="formoCover">
+                <label for="Species" class="formlbl">Species</label>
+                <input type="text" class="formEle" id="Species" maxlength="20" placeholder="Enter Species" required><br>
+
+                <label for="Location" class="formlbl">Location</label>
+                <input type="text" class="formEle" id="Location" maxlength="50" placeholder="Enter Location" required><br>
+                
+                <label for="Date" class="formlbl">Date</label>
+                <input type="date" class="formEle" id="Date" placeholder="Enter Date" required><br><br>
+
+                <label for="Time" class="formlbl">Time</label>
+                <input type="time" class="formEle" id="Time" placeholder="Enter Time" required><br>
+
+                <label for="Urgency" class="formlbl">Urgency</label>
+                <select name="Urgency" class="formEle" id="Urgency" placeholder="Enter the Urgency">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select><br>
+
+                <label for="Details" class="formlbl">Details</label>
+                <input type="text" class="formEle" id="Details" maxlength="1000" placeholder="Enter Details about incident" required><br>
+
+            </div>
+            <div class="formBtn">
+            <input type="button" name="button" id="Btn" onclick="subFun(event)" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
+   
+
+
+
+
+
+   <footer>
+    <div class="footer">
+        <h4>Contact Us </h4>
+        <p>+91 6362842374</p>
+        <p>+91 9611409252</p>
+        <h4>Location</h4>
+        <p>Kumbar beedi 1st cross old town.</p>
+        <p>Bhadravathi,Shivamoga,Karnataka</p>
+    </div>
+  </footer>
+  <script src="complaint.js" type="module" defer></script>
+</body>
+</html>
